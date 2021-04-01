@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-unsigned int **tri(unsigned int *record, unsigned int size);
+unsigned int **sort(unsigned int *record, unsigned int size);
 
 
 
@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
 	 unsigned int nbCaracteresASCII = 256;
 	 unsigned int *record = calloc(nbCaracteresASCII, sizeof(unsigned int));
 
-
+	 // Analyze all files passed through argv
 	 // Analyse autant de fois qu'il y a de fichiers passés en argv
 	 for (int numArgc = 1 ; numArgc < argc ; numArgc++) {
 			FILE *f = fopen(argv[numArgc], "r");
@@ -29,9 +29,11 @@ int main(int argc, char *argv[]) {
 			}
 	 }
 
+	 // End of analysis, sorting results by descending order
 	 // Fin de l'analyse, tri des résultats par ordre décroissant
-	 unsigned int **recordTries = tri(record, nbCaracteresASCII);
+	 unsigned int **recordTries = sort(record, nbCaracteresASCII);
 
+	 // End of sort, displaying of the ordered data
 	 // Fin du tri, affichage des résultats
 	 for (long unsigned int i = 0 ; i < nbCaracteresASCII ; i++) {
 			if (recordTries[i][1] == 0)
@@ -60,7 +62,7 @@ int main(int argc, char *argv[]) {
 
 
 
-unsigned int **tri(unsigned int *record, unsigned int size) {
+unsigned int **sort(unsigned int *record, unsigned int size) {
 
 
 	 // Initialise le tableau ** qui contient la valeur int du caractère et son nom d'apparitions
